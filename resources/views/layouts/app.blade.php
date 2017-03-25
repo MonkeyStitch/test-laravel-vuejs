@@ -90,7 +90,7 @@
         <script>
             noty({
                 type: 'success',
-                layout: 'top',
+                layout: 'bottomLeft',
                 text: '{{ Session::get('success') }}'
             });
         </script>
