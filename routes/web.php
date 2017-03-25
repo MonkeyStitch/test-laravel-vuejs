@@ -27,4 +27,14 @@ Route::group(['middleware' => 'auth'], function (){
         'as' => 'profile'
     ]);
 
+
+    Route::get('profile/edit/me', [
+        'uses' => 'ProfilesController@edit',
+        'as' => 'profile.edit'
+    ]);
+
+    Route::post('profile/update/me', [
+        'uses' => 'ProfilesController@update',
+        'as' => 'profile.update'
+    ]);
 });
