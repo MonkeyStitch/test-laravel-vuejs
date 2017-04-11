@@ -19,40 +19,34 @@ class ProfilesController extends Controller
             ->with('user', $user);
     }
 
-
     public function edit()
     {
-
-        return view('profiles.edit')
-            ->with('info', Auth::user()->profile);
-
+        return view('profiles.edit')->with('info', Auth::user()->profile);
     }
 
     public function update(Request $r)
     {
 
         $this->validate($r, [
-            'location'  => 'required',
-            'about'     => 'required|max:255',
+            'location' => 'required',
+            'about' => 'required|max:255'
         ]);
 
         Auth::user()->profile()->update([
-            'location' => $r->get('location'),
-            'about' => $r->get('about')
+            'location' => $r->location,
+            'about' => $r->about
         ]);
 
 
-        if ($r->hasFile('avatar'))
-        {
-
+        if ($r->hasFile('avatar')) {
             Auth::user()->update([
-                'avatar' => $r->file('avatar')->store('public/avatars')
-            ]);
+                'avatar' => $r->avatar->store('public/avatars'),
 
+            ]);
         }
 
 
-        Session::flash('success', 'Profile update.');
+        Session::flash('success', 'Profile updated.');
 
         return redirect()->back();
     }

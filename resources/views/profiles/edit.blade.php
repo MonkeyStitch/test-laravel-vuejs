@@ -9,8 +9,8 @@
 
                     <div class="panel-body">
                         <form action="{{ route('profile.update') }}" method="post" enctype="multipart/form-data">
-
                             {{ csrf_field() }}
+                            {{ method_field('PUT') }}
 
                             <div class="form-group">
                                 <label for="avatar">Upload avatar</label>
